@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 public class CadastroDeProduto {
 
     public static void main(String[] args) {
+        //Thiago
         Categoria celulares = new Categoria("CELULARES");
 
         Produto celular = new Produto("Xiaomi Redmi","Muito Legal", new BigDecimal("800"), celulares);
