@@ -27,8 +27,6 @@ public class TesteCadastroProduto2 {
         BigDecimal precoDoProduto = produtoDao.buscarPrecoDoProdutoComNome("Xiaomi Redmi");
         System.out.println("Preço do Produto " + precoDoProduto);
 
-
-
     }
 
     private static void cadastrarProduto() {
