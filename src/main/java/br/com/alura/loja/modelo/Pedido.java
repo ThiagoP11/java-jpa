@@ -14,11 +14,12 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "valor_total")
-    private BigDecimal valortotal;
+    private BigDecimal valorTotal = BigDecimal.ZERO;
     private LocalDate data = LocalDate.now();
     @ManyToOne
     private Cliente cliente;
 
+    // cascadeType = tudo que fizer com o pedido, faça tbm com o itemPedido
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) //nome do atributo que fica do outro lado
     private List<ItemPedido> itens = new ArrayList<>();
 
@@ -33,6 +34,7 @@ public class Pedido {
     public void adicionaItem(ItemPedido item) {
         item.setPedido(this);
         this.itens.add(item);
+        this.valorTotal = this.valorTotal.add(item.getValor());
     }
 
     public Long getId() {
@@ -43,12 +45,12 @@ public class Pedido {
         this.id = id;
     }
 
-    public BigDecimal getValortotal() {
-        return valortotal;
+    public BigDecimal getValorTotal() {
+        return valorTotal;
     }
 
-    public void setValortotal(BigDecimal valortotal) {
-        this.valortotal = valortotal;
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     public LocalDate getData() {
@@ -65,5 +67,12 @@ public class Pedido {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "valortotal=" + valorTotal +
+                '}';
     }
 }

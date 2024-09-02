@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 @Entity//é uma entidade ou seja existe uma tabela no banco de dados que está mapeando essa classe (espelho dessa classe)
 @Table(name="produtos") //Indicando que o nome da tabela é produtos
+@NamedQuery(name = "Produto.produtosPorCategoria", query = "SELECT p FROM Produto p WHERE p.categoria.nome = ?1")
 public class Produto {
 
     @Id //Mapeando a chave primaria com o atributo
